@@ -27,18 +27,35 @@ const todo = (state = initialState, action) => {
             };
 
         case 'TODO_DELETE':
-            const updatedList = state.todos.filter(el => el.id !== action.payload )
+            const updatedList = state.todos.filter(el => el.id !== action.payload)
             return {
                 ...state,
                 todos: updatedList
             }
 
         case 'TODO_EDIT':
+            const editedTodos = state.todos.map(el => {
+                if (el.id === action.payload.todoId) return ({
+                    ...el,
+                    title: action.payload.newName,
+                })
+                else return el
+            })
             return {
                 ...state,
-                todos: [...state.todos, {title: action.payload, done: false, id: Math.random()}]
+                todos: editedTodos
             };
 
+
+        case 'TODO_DONE_TOGGLE':
+            const toggleTodo = state.todos.map(el => {
+                if (el.id === action.payload) return ({...el, done: !el.done})
+                else return el;
+            })
+            return {
+                ...state,
+                todos: toggleTodo
+            };
         default:
             return state;
     }
