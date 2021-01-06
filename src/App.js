@@ -1,20 +1,19 @@
 import React from 'react';
-import Dashboard from "./Dashboard";
-
-function App (props) {
-
+import ToDoCreateForm from "./ToDoCreateForm";
+import ToDoList from "./ToDoList";
 
 
-  return (
-      <div className="App">
+function App() {
 
-          <Dashboard />
-      </div>
-  );
+
+    return (
+        <div className="App">
+            <h3>To do list </h3>
+            <ToDoCreateForm/>
+            <ToDoList/>
+        </div>
+    );
 }
-
-
-
 
 
 export default App;
